@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "gibson-light";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../assets/fonts/gibson/light-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/gibson/light-webfont.woff2") format("woff2"), url("../assets/fonts/gibson/light-webfont.woff") format("woff"), url("../assets/fonts/gibson/light-webfont.ttf") format("truetype"), url("../assets/fonts/gibson/light-webfont.svg#gibson-light") format("svg"); }
+@font-face {
+  font-family: "gibson-regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/gibson/regular-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/gibson/regular-webfont.woff2") format("woff2"), url("../assets/fonts/gibson/regular-webfont.woff") format("woff"), url("../assets/fonts/gibson/regular-webfont.ttf") format("truetype"), url("../assets/fonts/gibson/regular-webfont.svg#gibson-regular") format("svg"); }
+@font-face {
+  font-family: "gibson-semibold";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/gibson/semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/gibson/semibold-webfont.woff2") format("woff2"), url("../assets/fonts/gibson/semibold-webfont.woff") format("woff"), url("../assets/fonts/gibson/semibold-webfont.ttf") format("truetype"), url("../assets/fonts/gibson/semibold-webfont.svg#gibson-semibold") format("svg"); }
+@font-face {
+  font-family: "gibson-bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/gibson/bold-webfont.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/gibson/bold-webfont.woff2") format("woff2"), url("../assets/fonts/gibson/bold-webfont.woff") format("woff"), url("../assets/fonts/gibson/bold-webfont.ttf") format("truetype"), url("../assets/fonts/gibson/bold-webfont.svg#gibson-bold") format("svg"); }
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  height: 100%;
+  overflow: auto; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "gibson-regular";
+  font-weight: 400; }
+
+button,
+input {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: "gibson-regular";
+  font-weight: 400; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+
+.controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 60px;
+  background: rgba(19, 22, 33, 0.93); }
+
+.control__item {
+  position: relative;
+  height: 100%;
+  width: calc(100% / 3);
+  float: left;
+  display: block; }
+.control__btn {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+  .control__btn--mute {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    outline: 0;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 4px; }
+    .control__btn--mute.active {
+      color: #2A98FF;
+      border: 1px solid #2A98FF; }
+
+.workspace {
+  position: relative;
+  top: 0; }
+
+.sound__list {
+  width: 100%; }
+.sound__item {
+  padding: 20px;
+  border-bottom: 1px solid #EDF2F3; }
+  .sound__item__title {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #6C738E;
+    cursor: default;
+    font-size: 13px; }
+.sound__range-slider {
+  float: right; }
+
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 8px; }
+  input[type=range]:focus {
+    outline: none; }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    -webkit-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+    -moz-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+    transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+    position: relative;
+    top: -4px;
+    width: 3px;
+    height: 10px;
+    background: #2A98FF; }
+    input[type=range]::-webkit-slider-thumb:hover, input[type=range]::-webkit-slider-thumb:active, input[type=range]::-webkit-slider-thumb:focus {
+      -webkit-transform: scale(1.5);
+      -moz-transform: scale(1.5);
+      -ms-transform: scale(1.5);
+      -o-transform: scale(1.5);
+      transform: scale(1.5); }
+  input[type=range]::-webkit-slider-runnable-track {
+    background-color: #90c9ff;
+    background-image: -webkit-linear-gradient(left, #90c9ff, #2A98FF);
+    background-image: linear-gradient(to right,#90c9ff, #2A98FF);
+    height: 2px; }
+
+.icon {
+  position: relative;
+  margin-right: 10px; }
+  .icon--waves, .icon--rain, .icon--storm, .icon--river, .icon--cafe, .icon--birds {
+    width: 24px;
+    height: 24px;
+    float: left; }
+  .icon--cafe {
+    top: -4px; }
+  .icon--river {
+    top: -2px; }

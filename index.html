@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Oto</title>
+    <link rel="stylesheet" href="css/application.css">
+  </head>
+  <body>
+      <div class="workspace">
+        <ul class="sound__list">
+            <li class="sound__item">
+                <img src="assets/svg/rain.svg" alt="" class="icon icon--rain">
+                <span class="sound__item__title">Rain</span>
+                <input type="range" value="0" min="0" max="100" step="10" class="sound__range-slider sound__range-slider--rain">
+            </li>
+            <li class="sound__item">
+                <img src="assets/svg/storm.svg" alt="" class="icon icon--storm">
+                <span class="sound__item__title">Storm</span>
+                <input type="range" value="0" min="0" max="100" step="10" class="sound__range-slider sound__range-slider--storm">
+            </li>
+            <li class="sound__item">
+                <img src="assets/svg/cafe.svg" alt="" class="icon icon--cafe">
+                <span class="sound__item__title">Cafe</span>
+                <input type="range" value="0" min="0" max="100" step="10" class="sound__range-slider sound__range-slider--cafe">
+            </li>
+            <li class="sound__item">
+                <img src="assets/svg/waves.svg" alt="" class="icon icon--waves">
+                <span class="sound__item__title">Waves</span>
+                <input type="range" value="0" min="0" max="100" step="10" class="sound__range-slider sound__range-slider--waves">
+            </li>
+            <li class="sound__item">
+                <img src="assets/svg/river.svg" alt="" class="icon icon--river">
+                <span class="sound__item__title">River</span>
+                <input type="range" value="0" min="0" max="100" step="10" class="sound__range-slider sound__range-slider--river">
+            </li>
+            <li class="sound__item">
+                <img src="assets/svg/birds.svg" alt="" class="icon icon--birds">
+                <span class="sound__item__title">Birds</span>
+                <input type="range" value="0" min="0" max="100" step="10" class="sound__range-slider sound__range-slider--birds">
+            </li>
+        </ul>
+      </div>
+      <div class="controls">
+          <div class="control__item">
+              <button class="control__btn control__btn--mute">Mute</button>
+          </div>
+      </div>
+      <script src="assets/howler.min.js"></script>
+      <script src="assets/application.js"></script>
+  </body>
+</html>

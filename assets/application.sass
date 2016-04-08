@@ -1,0 +1,144 @@
+// Import Libs
+@import "bourbon"
+
+// Vars
+$brand-blue: #2A98FF
+
+// Import Fonts
+@include font-face("gibson-light", "../assets/fonts/gibson/light-webfont", 300)
+@include font-face("gibson-regular", "../assets/fonts/gibson/regular-webfont", 400)
+@include font-face("gibson-semibold", "../assets/fonts/gibson/semibold-webfont", 600)
+@include font-face("gibson-bold", "../assets/fonts/gibson/bold-webfont", 700)
+
+// Resets
+html
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+body
+    height: 100%
+    overflow: auto
+
+html,
+body
+    margin: 0
+    padding: 0
+    font:
+        family: 'gibson-regular'
+        weight: 400
+
+button,
+input
+    @include user-select(none)
+    font:
+        family: 'gibson-regular'
+        weight: 400
+
+ul
+    margin: 0
+    padding: 0
+    list-style-type: none
+
+// Player Controls
+.controls
+    @include position(fixed, null null 0 0)
+    z-index: 9999
+    width: 100%
+    height: 60px
+    background: rgba(#131621, 0.93)
+
+.control
+    &__item
+        position: relative
+        height: 100%
+        width: calc(100% / 3)
+        float: left
+        display: block
+
+    &__btn
+        @include position(relative, 50% null null 50%)
+        @include transform(translate(-50%, -50%))
+
+        &--mute
+            @include appearance(none)
+            outline: 0
+            color: white
+            background: transparent
+            border: 1px solid rgba(white, 0.8)
+            border-radius: 4px
+
+            &.active
+                color: $brand-blue
+                border: 1px solid $brand-blue
+
+// Sound List
+.workspace
+    @include position(relative, 0 null null null)
+
+.sound
+    &__list
+        width: 100%
+
+    &__item
+        padding: 20px
+        border-bottom: 1px solid #EDF2F3
+
+        &__title
+            @include user-select(none)
+            color: #6C738E
+            cursor: default
+            font:
+                size: 13px
+
+    &__range-slider
+        float: right
+
+
+// Style all sliders
+input[type=range]
+    @include appearance(none)
+    @include position(relative, 8px null null null)
+
+    &:focus
+        outline: none
+
+    &::-webkit-slider-thumb
+        @include appearance(none)
+        @include transition(all, $ease-out-cubic, 200ms)
+        position: relative
+        top: -4px
+        width: 3px
+        height: 10px
+        background: $brand-blue
+
+        &:hover,
+        &:active,
+        &:focus
+            @include transform(scale(1.5))
+
+    &::-webkit-slider-runnable-track
+        @include linear-gradient(to right, lighten($brand-blue, 20%), $brand-blue)
+        height: 2px
+
+// Icons
+.icon
+    position: relative
+    margin-right: 10px
+
+    &--waves,
+    &--rain,
+    &--storm,
+    &--river,
+    &--cafe,
+    &--birds
+
+        width: 24px
+        height: 24px
+        float: left
+
+    &--cafe
+        top: -4px
+
+    &--river
+        top: -2px
