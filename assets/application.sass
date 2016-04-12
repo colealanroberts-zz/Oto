@@ -2,7 +2,9 @@
 @import "bourbon"
 
 // Vars
-$brand-blue: #2A98FF
+$brand-grey: #6C738E
+$brand-blue: #11A6FF
+$border-grey: #EDF2F3
 
 // Import Fonts
 @include font-face("gibson-light", "../assets/fonts/gibson/light-webfont", 300)
@@ -19,6 +21,7 @@ html
 body
     height: 100%
     overflow: auto
+    -webkit-app-region: drag
 
 html,
 body
@@ -27,6 +30,10 @@ body
     font:
         family: 'gibson-regular'
         weight: 400
+
+a
+    color: $brand-blue
+    text-decoration: none
 
 button,
 input
@@ -40,25 +47,105 @@ ul
     padding: 0
     list-style-type: none
 
+.paragraph
+    color: $brand-grey
+    font:
+        size: 0.8125rem
+        weight: 400
+        family: 'gibson-light'
+
+.page-title
+    color: darken($brand-grey, 20%)
+    margin-bottom: 0
+    font:
+        size: 2rem
+        weight: 400
+        family: 'gibson-light'
+
+// Animations
+@include keyframes(page-in)
+    0%
+        @include transform(translateX(-100%))
+        opacity: 0
+
+    100%
+        @include transform(translateX(0))
+        opacity: 1
+
+@include keyframes(page-out)
+    0%
+        @include transform(scale(1.0))
+        opacity: 1
+
+    100%
+        @include transform(scale(0.8))
+        opacity: 0
+
+// Wrapper
+.wrapper
+    @include position(absolute, 0 0 0 0)
+    height: 100%
+    width: 100%
+    overflow: hidden
+    background: white
+
+    &.ng-enter
+        @include animation(page-in $ease-out-cubic 250ms)
+
+    &.ng-leave
+        @include animation(page-out $ease-out-cubic 250ms)
+
+// Helpers
+.clearfix
+    &:after
+        content: ""
+        display: table
+        clear: both
+
+.float
+    &--left
+        float: left
+
+    &--right
+        float: right
+
+.logo
+    @include position(relative, 20px null null null)
+    width: 64px
+    height: 64px
+    margin-bottom: 20px
+
+.about
+    padding: 40px
+    text-align: center
+
+    &__version
+        color: $brand-grey
+        font:
+            size: 11px
+            family: 'gibson-light'
+
 // Player Controls
 .controls
     @include position(fixed, null null 0 0)
     z-index: 9999
-    width: 100%
+    padding: 0 20px
+    width: calc(100% - 40px)
     height: 60px
+    line-height: 60px
     background: rgba(#131621, 0.93)
 
 .control
     &__item
         position: relative
         height: 100%
-        width: calc(100% / 3)
+        width: calc(100% / 2)
         float: left
         display: block
 
     &__btn
-        @include position(relative, 50% null null 50%)
-        @include transform(translate(-50%, -50%))
+        //@include position(relative, 50% null null 50%)
+        //@include transform(translate(-50%, -50%))
 
         &--mute
             @include appearance(none)
@@ -72,9 +159,19 @@ ul
                 color: $brand-blue
                 border: 1px solid $brand-blue
 
+    &__select
+        @include appearance(none)
+        padding: 4px 6px
+        outline: 0
+        width: 100%
+        color: white
+        background: transparent
+        border: 1px solid rgba(white, 0.8)
+        border-radius: 4px
+
 // Sound List
 .workspace
-    @include position(relative, 0 null null null)
+    @include position(relative, 20px null null null)
 
 .sound
     &__list
@@ -82,49 +179,90 @@ ul
 
     &__item
         padding: 20px
-        border-bottom: 1px solid #EDF2F3
+        border-bottom: 1px solid $border-grey
+
+        //&:first-of-type
+            border-top: 1px solid $border-grey
 
         &__title
             @include user-select(none)
-            color: #6C738E
+            color: $brand-grey
             cursor: default
             font:
                 size: 13px
 
     &__range-slider
+        @include appearance(none)
+        @include position(relative, 8px null null null)
+        -webkit-app-region: no-drag
         float: right
 
+        &:hover
+            &::-webkit-slider-thumb
+                @include appearance(none)
+                @include transition(all, $ease-out-cubic, 200ms)
+                -webkit-app-region: no-drag
+                position: relative
+                top: -2px
+                width: 6px
+                height: 6px
+                border-radius: 999px
+                background: $brand-blue
 
-// Style all sliders
-input[type=range]
-    @include appearance(none)
-    @include position(relative, 8px null null null)
+                &:hover,
+                &:active,
+                &:focus
+                    @include transform(scale(1.5))
 
-    &:focus
-        outline: none
-
-    &::-webkit-slider-thumb
-        @include appearance(none)
-        @include transition(all, $ease-out-cubic, 200ms)
-        position: relative
-        top: -4px
-        width: 3px
-        height: 10px
-        background: $brand-blue
-
-        &:hover,
-        &:active,
         &:focus
-            @include transform(scale(1.5))
+            outline: none
 
-    &::-webkit-slider-runnable-track
-        @include linear-gradient(to right, lighten($brand-blue, 20%), $brand-blue)
-        height: 2px
+        &::-webkit-slider-thumb
+            @include appearance(none)
+            @include transition(all, $ease-out-cubic, 200ms)
+            -webkit-app-region: no-drag
+            position: relative
+            top: -2px
+            width: 6px
+            height: 6px
+            border-radius: 999px
+            background: transparent
+
+            &:hover,
+            &:active,
+            &:focus
+                @include transform(scale(1.5))
+
+        &::-webkit-slider-runnable-track
+            height: 2px
+            background: $brand-blue
+
+        &--global
+            @include position(relative, 50% null null null)
+            @include transform(translateY(-50%))
+
+            &:focus
+                outline: none
+
+            &::-webkit-slider-thumb
+                background: $brand-grey
+
+                &:hover
+                    background: $brand-grey
+
+                &:hover,
+                &:active,
+                &:focus
+                    @include transform(scale(1.5))
+
+            &::-webkit-slider-runnable-track
+                height: 2px
+                background: $brand-grey
 
 // Icons
 .icon
     position: relative
-    margin-right: 10px
+    margin-right: 16px
 
     &--waves,
     &--rain,

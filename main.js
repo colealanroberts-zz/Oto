@@ -11,8 +11,15 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 function createWindow () {
+
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 300, height: 450, resizable: false});
+  mainWindow = new BrowserWindow({
+      'titleBarStyle': 'hidden',
+      width: 300,
+      height: 445,
+      resizable: false
+      //resizable: true
+  });
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');

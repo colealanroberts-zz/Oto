@@ -1,0 +1,1 @@
+shiro.config(["$routeProvider",function(t){t.when("/",{templateUrl:"templates/home.html",controller:"HomeCtrl"}).when("/about",{templateUrl:"templates/about.html",controller:"AboutCtrl"}).otherwise({redirectTo:"/"})}]);
